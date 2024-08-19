@@ -59,8 +59,8 @@ alert(pergunta3 + resposta3)
 let a = 10 // define o valor de a como 10
 let b = 25 // define o valor de b como 25
 c = a // define o valor de c igual a variavel a 
-a = b // define o valor de a igual a variavel b
-b = c // define o valor de igual b variavel c
-console.log("O novo valor de a é", a); // imprime no console o valor de a
-console.log("O novo valor de b é", b); // imprime no console o valor de b
+a = b
+b = c
+console.log("O novo valor de a é", a);
+console.log("O novo valor de b é", b);
 */
