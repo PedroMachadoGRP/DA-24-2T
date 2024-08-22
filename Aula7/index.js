@@ -152,5 +152,51 @@ let comparacao6 = comparacao4 === 0  // compara o resultado do calculo dos núme
 console.log("O primeiro numero é maior que segundo? True/False",comparacao1,"\nO primeiro numero é igual ao segundo? True/False", comparacao2, "\nO primeiro numero é divisível pelo segundo? True/False",comparacao5, "\nO segundo numero é divisível pelo primeiro? True/False",comparacao6); // imprime o resultado de todos os algoritmos anteriores no console
 */
 
+/*
+alert("Aperte ctr + j para abrir o console")
+pergunta1 // variavel vazia
+let fahrenheitKelvin = (pergunta1 - 32)*5 //Formula para transformar fahrenheit em kelvin
+let fahrenheitKelvin1 = fahrenheitKelvin / 9 //Formula para transformar fahrenheit em kelvin 
+let fahrenheitKelvin3 = fahrenheitKelvin1 + 273.15 + "Kelvin" //Formula para transformar fahrenheit em kelvin 
 
+pergunta2 
+let celsiusFahrenhei = 9/5 * (pergunta2)  //Formula para transformar celsius em fahrenheit
+let celsiusFahrenhei1 = celsiusFahrenhei + 32 + "Fahrenheit" //Formula para transformar celsius em fahrenheit
+let celsiusKelvin = pergunta2 + 273.15 + "Kelvin" // Formula para transformar celsius em kelvin
+*/
+
+//Pergunta a
+/*
+pergunta1 = 77
+let fahrenheitKelvin = (pergunta1 - 32)*5 //Formula para transformar fahrenheit em kelvin
+let fahrenheitKelvin1 = fahrenheitKelvin / 9 //Formula para transformar fahrenheit em kelvin 
+let fahrenheitKelvin3 = fahrenheitKelvin1 + 273.15 +  "Kelvin" //Formula para transformar fahrenheit em kelvin 
+console.log(fahrenheitKelvin3);
+*/
+/*Pergunta b 
+pergunta2 = 80
+let celsiusFahrenhei = 9/5 * (pergunta2)  //Formula para transformar celsius em fahrenheit
+let celsiusFahrenhei1 = celsiusFahrenhei + 32 +  "Fahrenheit" //Formula para transformar celsius em fahrenheit
+console.log(celsiusFahrenhei1);
+
+*/
+/*
+//Pergunta c 
+pergunta2 = 30
+let celsiusFahrenhei = 9/5 * (pergunta2)  //Formula para transformar celsius em fahrenheit
+let celsiusFahrenhei1 = celsiusFahrenhei + 32 +  "Fahrenheit" //Formula para transformar celsius em fahrenheit
+console.log(celsiusFahrenhei1);
+let celsiusKelvin = pergunta2 + 273.15 +  "Kelvin" // Formula para transformar celsius em kelvin
+
+console.log(celsiusKelvin);
+*/
+//Pergunta d
+
+pergunta2 = Number(prompt("Insira um número que será convertido de celsius para fahrenheit e kelvin"))
+let celsiusFahrenhei = 9/5 * (pergunta2)  //Formula para transformar celsius em fahrenheit
+let celsiusFahrenhei1 = celsiusFahrenhei + 32 +  "Fahrenheit" //Formula para transformar celsius em fahrenheit
+console.log(celsiusFahrenhei1);
+let celsiusKelvin = pergunta2 + 273.15 +  "Kelvin" // Formula para transformar celsius em kelvin
+
+console.log(celsiusKelvin);
 
