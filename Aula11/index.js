@@ -101,7 +101,6 @@ let precoIngresso = Number(prompt("Digite o preço do ingresso do filme que voc�
 if(genero === "fantasia" && precoIngresso < 15){
     let lanche = prompt("Escolha o que você gostaria de levar para o filme")
     console.log(`Bom filme!. Aproveite o seu ${lanche}`);
-    
 }else {
     console.log("Escolha outro filme");
     
