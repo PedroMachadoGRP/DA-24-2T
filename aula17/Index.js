@@ -125,6 +125,7 @@ console.log(`O nome da pessoa é ${pessoa.nome} e suas comidas preferidas são $
 }
 pessoa()
 */
+/*
 let personagens = [
     {nome : "Jotaro",
     idade : 40,
@@ -143,7 +144,7 @@ let personagens = [
     }
 ]
 
-function adicionarPersonagem(nome,idade,classe,poder){
+function adicionarPersonagem(novoPersonagem){
     const novoPersonagem = {
         nome : "Kakyoin",
         idade : 17,
@@ -152,7 +153,6 @@ function adicionarPersonagem(nome,idade,classe,poder){
     }
     personagens.push(novoPersonagem)
     console.log(personagens);
-    
-
 }
+*/
 
