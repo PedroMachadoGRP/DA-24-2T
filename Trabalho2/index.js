@@ -12,7 +12,7 @@ function adicionarPersonagem(nome,classe,nivel,hp,habilidade){ //Função para a
     classe : classe,
     nivel : nivel,
     hp : hp,
-    habilidade : habilidade = []
+    habilidade : habilidade 
    } 
    personagens.push(novoPersonagem) // Envia as informações do novo personagem para o array de personagem
    console.log("Personagem adicionado com sucesso");
