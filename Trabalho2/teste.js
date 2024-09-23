@@ -1,3 +1,4 @@
+/*
 const comecar = true
 const personagens = [
     {nome : "Place",
@@ -30,3 +31,26 @@ if(habilidadeEncontrado){
 } 
 
 console.log(personagens);
+*/
+/*
+let novaHabilidade = prompt("Digite a sua habilidade")
+let iniciar = true
+while(iniciar){
+    let deseja = prompt("Você deseja adicionar uma nova habilidade?")
+    switch(deseja){
+        case "Sim":
+            let novaHabilidade = prompt("Digite a sua habilidade") 
+            adawdadw(novaHabilidade)
+            break
+        case "Nao":
+            iniciar = false
+            break
+    }
+}
+    */
+   const curso = {
+    nome : "Noturno Frontend",
+    linguagens : ["JS","CSS","HTML"]
+   }
+   console.log(curso.);
+   

@@ -191,7 +191,7 @@ let celsiusKelvin = pergunta2 + 273.15 +  "Kelvin" // Formula para transformar c
 console.log(celsiusKelvin);
 */
 //Pergunta d
-
+/*
 pergunta2 = Number(prompt("Insira um número que será convertido de celsius para fahrenheit e kelvin"))
 let celsiusFahrenhei = 9/5 * (pergunta2)  //Formula para transformar celsius em fahrenheit
 let celsiusFahrenhei1 = celsiusFahrenhei + 32 +  "Fahrenheit" //Formula para transformar celsius em fahrenheit
@@ -199,4 +199,6 @@ console.log(celsiusFahrenhei1);
 let celsiusKelvin = pergunta2 + 273.15 +  "Kelvin" // Formula para transformar celsius em kelvin
 
 console.log(celsiusKelvin);
+*/
 
+console.log("AULIA ARROAAAAAMBADA");
