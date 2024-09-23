@@ -1,7 +1,6 @@
-
 const personagens = [
     {
-        nome : "Arnaldo",classe : "Mago", nivel: 10,hp : 50, habilidades : ["Fogo"],historicoAcoes: []},
+        nome : "Arnaldo",classe : "Mago", nivel: 10,hp : 50, habilidades : ["Bola de fogo"],historicoAcoes: []},
     {
         nome : "Pedro", classe : "Guerreiro", nivel: 20, hp: 100, habilidades : ["Voar"], historicoAcoes: []
     } 
@@ -12,7 +11,8 @@ function adicionarPersonagem(nome,classe,nivel,hp,habilidade){ //Função para a
     classe : classe,
     nivel : nivel,
     hp : hp,
-    habilidade : habilidade 
+    habilidades :[habilidade],
+    historicoAcoes : []
    } 
    personagens.push(novoPersonagem) // Envia as informações do novo personagem para o array de personagem
    console.log("Personagem adicionado com sucesso");
@@ -28,6 +28,7 @@ function exibirPersonagens(){ // Função para exibir o array de objetos no cons
                 return true
             }
             })
+        
     }
 
 
@@ -55,11 +56,9 @@ function personagemAgir(personagem,habilidade,historicoAcoes){ //Função para i
     const usarHabilidade = personagens.find(pessoa => pessoa.habilidades[0] === habilidade) // verificação se a habilidade consta dentro do array de habilidades
     if(usarHabilidade){
         usarHabilidade.historicoAcoes.push(habilidade) //envia a habilidade utilizada para o array de historico de ações
-        console.log(`Habilidade ${habilidade} foi usada`);
-        
+        console.log(`Habilidade ${habilidade} foi usada`); 
     }else{
         console.log("Habilidade não encontrada");
-        
     }
 }
 function excluirPersonagem(personagens,nome,valor){ // Função para identificar e excluir o personagem desejado
@@ -68,12 +67,12 @@ function excluirPersonagem(personagens,nome,valor){ // Função para identificar
 }
 let comecar = true
 while(comecar){ //Looping para fazer um menu usando switch
-    let selecionar = prompt("Digite o número da ação que você deseja realizar, \n1- Listar Todos os Personagens: \n2- Cadastro de Personagens: \n3- para fazer o personagem realizar uma ação \n4- Busca de Personagens por Nome: \n5- Excluir personagem ")
+    let selecionar = prompt("Digite o número da ação que você deseja realizar, \n1- Listar Todos os Personagens: \n2- Cadastro de Personagens: \n3- para fazer o personagem realizar uma ação \n4- Busca de Personagens por Nome: \n5- Excluir personagem  \n6- Sair")
+
 
     switch(selecionar){ //Switch para selecionar a função desejada
         case "1"://Exibir personagens
             exibirPersonagens()
-
             break
         case "2"://Adicionar personagens
         let novoNome = prompt("Digite um nome")
@@ -87,19 +86,19 @@ while(comecar){ //Looping para fazer um menu usando switch
             let persoangemEscolido = prompt("Digite o nome do personagem que ira realizar a ação")
             let habilidadeUsada = prompt("Digite o nome da habilidade usada")
             personagemAgir(persoangemEscolido,habilidadeUsada)
-            exibirPersonagens()
             break
 
         case "4"://Buscar personagens
             let qualPersonagem2 = prompt("Qual personagem você deseja buscar ")
             bucarPersonagem(qualPersonagem2)
+            break
         case "5": // Excluir personagem
             exibirPersonagens()
             let excluir = prompt("Digite o nome do persoangem que você deseja excluir")
             let persoangens2 = excluirPersonagem(personagens,"nome",excluir)
             console.log(persoangens2);
             break            
-        case "6":
+        case "6": // Finaliza o while
             comecar = false
             break
         default :
@@ -107,4 +106,3 @@ while(comecar){ //Looping para fazer um menu usando switch
         
     }
 }
-
