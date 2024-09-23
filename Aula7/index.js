@@ -201,4 +201,3 @@ let celsiusKelvin = pergunta2 + 273.15 +  "Kelvin" // Formula para transformar c
 console.log(celsiusKelvin);
 */
 
-console.log("AULIA ARROAAAAAMBADA");
