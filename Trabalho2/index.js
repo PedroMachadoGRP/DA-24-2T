@@ -52,6 +52,10 @@ function bucarPersonagem(nome){ // função para buscar e identificar se o perso
 }
 function personagemAgir(personagem,habilidade,historicoAcoes){ //Função para identificar e enviar a ação do personagem para o historico de ações
     bucarPersonagem(personagem)
+    for(let i of personagens){
+        console.log(i.habilidades);
+        
+    }
     const persoangemHabilidade = habilidade
     const usarHabilidade = personagens.find(pessoa => pessoa.habilidades[0] === habilidade) // verificação se a habilidade consta dentro do array de habilidades
     if(usarHabilidade){
@@ -61,9 +65,14 @@ function personagemAgir(personagem,habilidade,historicoAcoes){ //Função para i
         console.log("Habilidade não encontrada");
     }
 }
-function excluirPersonagem(personagens,nome,valor){ // Função para identificar e excluir o personagem desejado
-    return personagens.filter(function(i){return i[nome] !== valor})
-
+function excluirPersonagem(personagens,nome){ // Função para identificar e excluir o personagem desejado
+    personagens.filter(obj =>{
+        for(let key in obj){
+            if(key === nome){
+                delete obj[key]
+            }
+        }
+    })
 }
 let comecar = true
 while(comecar){ //Looping para fazer um menu usando switch
@@ -95,7 +104,7 @@ while(comecar){ //Looping para fazer um menu usando switch
         case "5": // Excluir personagem
             exibirPersonagens()
             let excluir = prompt("Digite o nome do persoangem que você deseja excluir")
-            let persoangens2 = excluirPersonagem(personagens,"nome",excluir)
+            let persoangens2 = excluirPersonagem(personagens,excluir)
             console.log(persoangens2);
             break            
         case "6": // Finaliza o while
