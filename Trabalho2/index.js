@@ -65,14 +65,9 @@ function personagemAgir(personagem,habilidade,historicoAcoes){ //Função para i
         console.log("Habilidade não encontrada");
     }
 }
-function excluirPersonagem(personagens,nome){ // Função para identificar e excluir o personagem desejado
-    personagens.filter(obj =>{
-        for(let key in obj){
-            if(key === nome){
-                delete obj[key]
-            }
-        }
-    })
+function excluirPersonagem(personagens,nome,valor){ // Função para identificar e excluir o personagem desejado
+    return personagens.filter(function(i){return i[nome] !== valor})
+
 }
 let comecar = true
 while(comecar){ //Looping para fazer um menu usando switch
@@ -115,3 +110,4 @@ while(comecar){ //Looping para fazer um menu usando switch
         
     }
 }
+
