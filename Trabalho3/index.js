@@ -31,7 +31,17 @@ function validarPersonagem(nome,vida,ataque,defesa){
         }
     }
 }
+function selecionarPersonagem(nome,vida,ataque,defesa){
+    for(personagem of personagens){
+        if(nome === personagem.nome){
+            console.log(`O personagem ${nome} foi selecionado`)
+        }else{
+            console.log("Algo deu errado");
+            
+        }
+    }
 
+}
 function validarItem(nome,tipo,quantidade){
     for(item of itens){
         if(item.quantidade < 21){
@@ -56,21 +66,19 @@ function validarArma(nome,dano,alcance){
 
 let iniciar = true
 while(iniciar){
-    let iniciar2 = prompt("Digite o número da função que você deseja iniciar \n1 Validar personagem \n2 Validar arma \n3 Validar item \n4 Sair" )
+    let iniciar2 = prompt("Digite o número da função que você deseja iniciar \n1 Validar personagem \n2 Selecionar personagem \n5 Sair" )
     switch(iniciar2){
         case "1":
             validarPersonagem()
             break
         case "2":
-            validarArma()
-            break
-        case "3":
-            validarItem()
-            break
-        case "4":
+            let nome = prompt("Digite o nome do personagem selecionado")
+            let vida = Number(prompt("Digite a quantidade de vida do personagem"))
+            let ataque = Number(prompt("Digite a quantidade de ataque do personagem"))
+            let defesa = Number(prompt("Digite o  valor de defesa do personagem"))
+            selecionarPersonagem(nome,vida,ataque,defesa)
+        case "5":
             iniciar = false
-        default:
-            console.log("Número invalido");
-            
+            break
     }
 }

@@ -89,36 +89,45 @@ let batalhaNaval = [
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0]
 ]
-function navios(){
-    batalhaNaval[1][0]= 1,
-    batalhaNaval[2][9]= 1,
-    batalhaNaval[3][8]= 1,
-    batalhaNaval[4][7]= 1,
-    batalhaNaval[5][6]= 1,
-    batalhaNaval[6][5]= 1,
-    batalhaNaval[7][4]= 1,
-    batalhaNaval[8][3]= 1,
-    batalhaNaval[9][2]= 1,
-    batalhaNaval[0][1]= 1
-}
-let quantidadeNavios = 0
-for(let i=0 ; i< batalhaNaval.length;i++){
-    for(let j = 0; j< batalhaNaval[i].length;j++ ){
-        quantidadeNavios += batalhaNaval[i][j]
-        
-        
+for (let i = 0; i < batalhaNaval.length; i++) {
+    for (let j = 0; j < batalhaNaval[i].length; j++) {
+    batalhaNaval[i][j] = Math.floor(Math.random() * 2);
     }
 }
-console.log(quantidadeNavios);
-function tentativas(){
-    navios()  
-if(batalhaNaval[i][j] === 1){
-    console.log("Navio destruido");
-}else if (batalhaNaval [i][j === 0]){
-                console.log("Posição errada");
-                
+console.table(batalhaNaval);
+
+function destruirNavios(p1,p2){
+    for(let i=0 ; i< batalhaNaval.length;i++){
+        for(let j = 0; j< batalhaNaval[i].length;j++ ){
+                let navios1 = Number(prompt("Digite a primeira posição do navio"))
+                let navios2 = Number(prompt("Digite a segunda posição do navio"))
+                if(batalhaNaval[i][j] === 1 ){
+                    batalhaNaval[navios1][navios2] = 0
+                    console.log("Navio destruido"); 
+                    console.table(batalhaNaval)
+                }else if (batalhaNaval[i][j] === 0 ) {
+                    batalhaNaval[navios1][navios2] = 0
+                    console.log("Você atingiu a água");
+                    console.table(batalhaNaval)
+                    
+                }
             }
         }
-tentativas()
+            
+    }
+
+
+let comecar= true
+while(comecar){
+    let num = prompt("Digite 1 para destruir navios e 2 para sair")
+    switch(num){
+        case "1":
+            destruirNavios()
+            break
+        case "2":
+            comecar = false
+            break
+    }
+}
