@@ -153,59 +153,59 @@ function  selecionarItem(){ //Função para selecionar um item
     }
 }
 
-function exibirPersonagens(){  
+function exibirPersonagens(){  //Função para exibir o array de personagens
     console.table(personagens);
     
 }
-function exibirArmas(){
+function exibirArmas(){ //Função para exibir o array de armas
 console.table(armas);
 }
-function exibirItens(){
+function exibirItens(){ //Função pra exibir o array de itens
     console.table(itens);
 }
-function adicionarPersonagem(nome,vida,ataque,defesa){
+function adicionarPersonagem(nome,vida,ataque,defesa){ //Função para adicionar um novo personagem
     const novoPersonagem = {
         nome : nome,
         vida : vida,
         ataque: ataque,
         defesa: defesa
     }
-    personagens.push(novoPersonagem)
+    personagens.push(novoPersonagem) //Envia novo personagem para o array de personagem
     console.table(personagens);
     
 }
-function adicionarArmas(nome,dano,alcance){
+function adicionarArmas(nome,dano,alcance){ //Função para adicionar uma nova arma
     const novaArma = {
         nome : nome,
         dano : dano,
         alcance : alcance
     }
-    armas.push(novaArma)
+    armas.push(novaArma) //Envia novo personagem para o array de armas
     console.table(armas);
     
 }
-function adicionarItens(nome,tipo,quantidade){
+function adicionarItens(nome,tipo,quantidade){ //Função para adicionar um novo item
     const novoItem = {
         nome : nome,
         tipo : tipo,
         quantidade : quantidade
     }
-    itens.push(novoItem)
+    itens.push(novoItem) //Envia novo personagem para o array de itens
     console.table(itens);
     
 }
-function validarItem(){
+function validarItem(){ //Função para validar um novo personagem
     let itemNome = prompt("Digite o nome do item")
-    let itemEncontrado = itens.find(item => item.nome === itemNome)
+    let itemEncontrado = itens.find(item => item.nome === itemNome) //Procura o item dito pelo usuario no array de itens
     if(itemEncontrado){
-        while(itemEncontrado){
+        while(itemEncontrado){ //Looping para que o usuario não digite um personagem já existente
             console.log("Erro,item já registrado");
             itemNome = prompt("Digite o nome do item novamente")
             itemEncontrado = itens.find(item => item.nome === itemNome)
 
         }
     }else if(itemNome === ""){
-        while(itemNome === ""){
+        while(itemNome === ""){ //Looping para que o usuario não digite um item vazio
             console.log("Erro, o nome do item não pode estar vazio");
             itemNome = prompt("Digite o nome do item novamente")
             
@@ -216,7 +216,7 @@ function validarItem(){
     }
     let itemTipo = prompt("Digite o tipo do item")
     if(itemTipo === ""){
-        while(itemTipo === ""){
+        while(itemTipo === ""){ //Looping para que o usuario não digite o tipo do item como vazio
             console.log("Erro,o tipo do item não pode estar vazio");
             itemTipo = prompt("Digite o tipo do item novamente")
             
@@ -226,8 +226,8 @@ function validarItem(){
         
     }
     let  itemQuantidade = Number(prompt("Digite a quantidade do item"))
-    if(itemQuantidade <= 0 || itemQuantidade >= 50){
-        while(itemQuantidade <= 0 || itemQuantidade >= 50){
+    if(itemQuantidade <= 0 || itemQuantidade >= 50){ //Condicional para fazer com que o usuario insira uma quantidade de itens maior que 0 e menor que 50
+        while(itemQuantidade <= 0 || itemQuantidade >= 50){ //Looping para fazer com que o  usuarion não consiga digitar uma quantidade de itens inferior a 0 e superior a 50
             console.log("Erro,quantidade invalida, a quantidade deve ser maior que 0 e menor que 50");
            itemQuantidade = Number(prompt("Digite a quantidade de itens novamente"))
         }
@@ -238,18 +238,18 @@ function validarItem(){
 
 }
 
-function validarArma(){
+function validarArma(){ //Função para validar uma nova arma 
     let armaNome = prompt("Digite o nome da sua arma")
-    let armaEncontradao = armas.find(arma => arma.nome === armaNome)
+    let armaEncontradao = armas.find(arma => arma.nome === armaNome)  //Procura a arma dita pelo usuario no array de armas
     if(armaEncontradao){
-        while(armaEncontradao){
+        while(armaEncontradao){ //Looping para que o usuario não digite uma arma já existente
             console.log("Erro,Arma já registrada");
             armaNome = prompt("Digite o nome da sua arma novamente")
             armaEncontradao = armas.find(arma => arma.nome === armaNome)
             
         }
     }else if(armaNome === ""){
-        while (armaNome === "") {
+        while (armaNome === "") { //Looping para que o usuario não digite uma arma com nome vazio
             console.log("Erro, o nome da arma não pode ser vazia");
             armaNome = prompt("Digite o nome da sua arma novamente")
         }
@@ -259,14 +259,14 @@ function validarArma(){
         
     }
     let aramaDano = Number(prompt("Digite o dano da arma"))
-    if(aramaDano <= 0 ||  aramaDano >= 20){
-        while(aramaDano <= 0 ||  aramaDano >= 20){
+    if(aramaDano <= 0 ||  aramaDano >= 20){ //Condicional para fazer com que o usuario insira uma quantidade de dano maior que 0 e menor que 20
+        while(aramaDano <= 0 ||  aramaDano >= 20){ //Looping para fazer com que o  usuarion não consiga digitar uma quantidade de dano inferior a 0 e superior a 20
             console.log("Erro, o dano da arma deve ser maior que 0 e menor que 20");
             aramaDano = Number(prompt("Digite o dano da arma novamente"))  
         }
     }
-    else if(aramaDano === ""){
-        while(aramaDano === ""){
+    else if(aramaDano === ""){ //condicional para que o usuario não consiga digitar o dano da arma como vazio
+        while(aramaDano === ""){ //Looping para que o usuario não consiga inserir um dano vazio
             console.log("Erro,o dano da arama não pode ser vazio");
             aramaDano = Number(prompt("Digite o dano da arma novamente"))
             
@@ -277,14 +277,14 @@ function validarArma(){
         
     }
     let aramaAlcanace = Number(prompt("Digite o alcance da arma"))
-    if(aramaAlcanace <= 0 ||  aramaAlcanace >= 10) {
-        while(aramaAlcanace <= 0 ||  aramaAlcanace >= 10){
+    if(aramaAlcanace <= 0 ||  aramaAlcanace >= 10) { //Condicional para fazer com que o usuario insira uma quantidade de alcance maior que 0 e menor que 10
+        while(aramaAlcanace <= 0 ||  aramaAlcanace >= 10){ //Looping para fazer com que o  usuarion não consiga digitar uma quantidade de dano inferior a 0 e superior a 10
             console.log("Erro, o alcance da arma deve ser maior que 0 e menor que 10")
             aramaAlcanace = Number(prompt("Digite o alcance da arma novamente"))
         }
     }
-        else if(aramaAlcanace === ""){
-            while(aramaAlcanace === ""){
+        else if(aramaAlcanace === ""){ //condicional para que o usuario não consiga digitar o alcance da arma como vazio
+            while(aramaAlcanace === ""){ //Looping para fazer com que o  usuarion não consiga digitar uma quantidade de alcance inferior a 0 e superior a 10
                 console.log("Erro,o alcance da arama não pode ser vazio");
                 aramaAlcanace = Number(prompt("Digite o dano da arma novamente"))
                 
@@ -298,16 +298,16 @@ function validarArma(){
 }
 function validarPersonagem(){
     let personagemNome = prompt("Digite o nome do personagem")
-    let personagemEncontradao = personagens.find(personagen => personagen.nome === personagemNome)
+    let personagemEncontradao = personagens.find(personagen => personagen.nome === personagemNome) //Procura o personagem dito pelo usuario no array de personagens
     if(personagemEncontradao){
-        while(personagemEncontradao){
+        while(personagemEncontradao){ //Looping para que o usuario não digite um personagem já existente
             console.log("Erro,personagem já registrado");
             personagemNome = prompt("Digite o nome do personagem novamente")
             personagemEncontradao = personagens.find(personagen => personagen.nome === personagemNome)
         }
     }
     else if(personagemNome === ""){
-        while(personagemNome === ""){
+        while(personagemNome === ""){ //Looping para que o usuario não digite um personagem vazio
             console.log("Erro, nome não pode ser vazio");
             personagemNome = prompt("Digite o nome do personagem novamente")
         }
@@ -318,8 +318,8 @@ function validarPersonagem(){
     }
 
     let vidaPesonagem = Number(prompt("Digite a quantidade de vida do personagem"))
-    if(vidaPesonagem <= 0 || vidaPesonagem >= 20){
-        while(vidaPesonagem <= 0 || vidaPesonagem >= 20){
+    if(vidaPesonagem <= 0 || vidaPesonagem >= 20){ //Condicional para fazer com que o usuario insira uma quantidade de vida maior que 0 e menor que 20
+        while(vidaPesonagem <= 0 || vidaPesonagem >= 20){ //Looping para fazer com que o  usuario não consiga digitar uma quantidade de vida inferior a 0 e superior a 20
             console.log("Erro,vida invalida, sua vida deve ser maior que 0 e menor que 20");
             vidaPesonagem = Number(prompt("Digite a quantidade de vida do personagem novamente"))
         }
@@ -329,8 +329,8 @@ function validarPersonagem(){
         
     }
     let defesaPesonagem = Number(prompt("Digite a quantidade de defesa do personagem"))
-    if(defesaPesonagem <= 0 || defesaPesonagem >= 10){
-        while(defesaPesonagem <= 0 || defesaPesonagem >= 10){
+    if(defesaPesonagem <= 0 || defesaPesonagem >= 10){ //Condicional para fazer com que o usuario insira uma quantidade de defesa maior que 0 e menor que 10
+        while(defesaPesonagem <= 0 || defesaPesonagem >= 10){ //Looping para fazer com que o  usuarion não consiga digitar uma quantidade de defesa inferior a 0 e superior a 10
             console.log("Erro,defesa invalida, sua defesa deve ser maior que 0 e menor que 10");
             defesaPesonagem = Number(prompt("Digite a quantidade de defesa do personagem novamente"))
         }
@@ -339,8 +339,8 @@ function validarPersonagem(){
         
     }
     let ataquePesonagem = Number(prompt("Digite a quantidade de ataque do personagem"))
-    if(ataquePesonagem <= 0 || ataquePesonagem >= 20){
-        while(ataquePesonagem <= 0 || ataquePesonagem >= 20){
+    if(ataquePesonagem <= 0 || ataquePesonagem >= 20){ //Condicional para fazer com que o usuario insira uma quantidade de ataque maior que 0 e menor que 20
+        while(ataquePesonagem <= 0 || ataquePesonagem >= 20){ //Looping para fazer com que o  usuarion não consiga digitar uma quantidade de ataque inferior a 0 e superior a 20
             console.log("Erro,ataque invalida, sua ataque deve ser maior que 0 e menor que 20");
             ataquePesonagem = Number(prompt("Digite a quantidade de ataque do personagem novamente"))
         }
@@ -354,7 +354,7 @@ function validarPersonagem(){
 
 
 let iniciar = true
-while (iniciar) {
+while (iniciar) { //Menu para selecionar a função desejada
     let escolha = prompt("digite : \n1- Para exibir os personagens, \n2- Para exibir as armas, \n3- para exibir os itens, \n4 para adicionar um personagem verificado, \n5- para adicionar uma arma verificada, \n6- para adicionar um  item verificado \n7- para Selecionar um personagem \n8- para selecionar um arma \n9- para selecionar um item \n10- para sair")
     switch(escolha){
         case "1":
