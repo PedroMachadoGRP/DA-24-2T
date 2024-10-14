@@ -5,7 +5,7 @@ let zumbies = //Objeto para representar os zumbies normais
     {nome : "Zumbie", vida : 20, dano : 3}
 
 let boss =  //Objeto para representar os zumbies normais
-    {nome : "Zumbie Rei",vida : 30, dano : 5}
+    {nome : "Boss",vida : 30, dano : 5}
 
 let armas = [ //Array de objeto para mostrar as armas disponiveis
     {nome : "Pistola",dano : 10,durabilidade : 20},
@@ -14,17 +14,32 @@ let armas = [ //Array de objeto para mostrar as armas disponiveis
 
 ]
 let ervas = [ //Objeto para representar a erva que cura o jogador
-    {nome : "Erva",cura : 5,quantidade : 1}
+    {nome : "Erva",cura : 5}
+]
+let chave = [
+    {nome:"Chave",uso:1}
 ]
 let municoes = [ //Objeto para repersentar a munição que repara as armas do jogador
-    {nome : "Munição",reparo : 10,quantidade : 20}
+    {nome : "Munição",reparo : 10}
 ]
 let inimigos = [ //Matriz para representar o número de inimigo
     ["Zumbie"],
     ["Zumbie"],
     ["Zumbie"],
+    ["Zumbie"],
+    ["Zumbie"],
+    ["Zumbie"],
+    ["Zumbie"],
+    ["Zumbie"],
+    ["Zumbie"],
+    ["Zumbie"],
     ["Boss"],
     ["Boss"],
+    ["Boss"],
+    ["Boss"],
+    ["Boss"],
+
+
 ]
 
 let inventario = [ //Matriz para repersentar o inventario do jogador
@@ -33,24 +48,28 @@ let inventario = [ //Matriz para repersentar o inventario do jogador
     ["Escopeta"],
     ["Faca"],
     ["Munição"],
-    [],
+    ["Chave"],
     [],
     [],
     [],
     [],
 ]
+
 let salvarInventario = []; //Array para a função de salvar o inventario do jogador
 let salvarInimigos = []; // Array para a função de salvar os inimigos 
+let salvarPersonagem = {} // Objeto para a função de salvar personagem
 
 
 function salvarERecarregarJogo(sOR) { //Função para salvar o recarregar o jogo
     if (sOR === "Salvar") { //Caso o jogador querira salvar
         salvarInventario = inventario.map(item => [...item]) //Função callback para  salvar o inventario do jogador
         salvarInimigos = inimigos.map(item => [...item]) //Função callback para  salvar os inimigos
+        salvarPersonagem = {...personagem} //Spreed para salvar o personagem
         console.log("Jogo salvo!")
     } else if (sOR === "Recarregar") { //Caso o jogador  queria recarregar
         inventario = salvarInventario.map(item => [...item]) //Trasforma o valor de inventario na variavel  salvarInventario
         inimigos = salvarInimigos.map(item => [...item])  //Trasforma o valor de inimigos na variavel salvarInimigos
+        personagem = {...salvarPersonagem} //Transforma o valor de personagem na variavel salvar personagem
         console.log("Jogo recarregado!")
     } else {
         console.log("Erro")
@@ -91,7 +110,10 @@ function matarZumbie(nomeInimigo, armaEscolhida) { //Função para matar   um zu
                     if (zumbies.vida <= 0) { //Caso o jogador mate o zumbi
                         inimigos.splice(i, 1); //Remove o zumbi da matriz de inimigos
                         console.log("Zumbie morto");
-                    } else { //Caso o jogador não tenha matado o zumbie
+                    }else if(arma.durabilidade <= 0){
+                        alert("Você não pode usar mais essa arma")
+                    }
+                     else { //Caso o jogador não tenha matado o zumbie
                         console.log(`O zumbie ainda tem ${zumbies.vida} de vida.`);
                     }
                 } else { //Caso o jogador tente usar uma arma que não existe no inventario
@@ -183,6 +205,23 @@ function adicionarErva(){ //Função para adicionar um erva ao inventario do jog
         alert("Seu invetario está cheio");
     }
 }
+function adicionarChave(){ //Função para adicionar uma chave ao inventario do jogador
+    let nomeChave = "Chave";
+    let adicionouChave = false;
+
+    for (let i = 0; i < inventario.length; i++) { //Percorre a matriz de inventario
+        if (inventario[i].length === 0) {
+            inventario[i].push(nomeChave) //Adiciona uma chave a matriz de inventario
+            adicionouChave = true
+            alert("Uma chave foi adicionada ao seu inventário");
+            mostrarInventario(); 
+            break; 
+        }
+    }
+    if (!adicionouChave) { //Caso o inventario do jogador esteja cheio
+        alert("Seu invetario está cheio");
+    }
+}
 function adicionarMunicao(){ //Função para adicionar um erva ao inventario do jogador
     let nomeMunicao = "Munição";
     let adicionouMunicao = false;
@@ -234,6 +273,20 @@ for(let i = 0; i < inventario.length; i++){ //Percorre a matriz de inventario
         }
     }
 }
+function descartarChave(chaveSelecionada2){ //Função para descartar chave
+    for(let i = 0; i < inventario.length; i++){ //Percorre a matriz de inventario
+        for(let j = inventario[i].length - 1 ; j>= 0; j--){ //Percorre a matriz de inventario
+            if(inventario[i][j] === chaveSelecionada2){ //Caso encotre alguma chave no inventario
+                inventario[i].splice(j,1) //Remove a chave do inventario
+                alert("A chave foi descartada");
+                mostrarInventario()
+                }
+            else{ //Caso o jogador não tenha chave no inventario
+                alert("Você não tem chave no inventrario para descartar")
+            }
+            }
+        }
+    }
 function descartarMunicao(municaoSelecionada2){ //Função para descartar munições
     for(let i = 0; i < inventario.length; i++){ //Percorre a matriz de inventario
         for(let j = inventario[i].length - 1 ; j>= 0; j--){ //Percorre a matriz de inventario
@@ -268,6 +321,11 @@ function descartarArma(armaSelecionada2){ //Função para descartar armas
 
 let iniciar = true
 while(iniciar){
+    if(personagem.vida <= 0){
+        alert("Você morreu");
+        iniciar = false
+        break
+    }
     let pergunta = prompt("Escolha qual opção você quer para seu jogo, \n1-  Exibir inventario \n2- Mostrar os Inimigos \n3- Status do personagem \n4- Status da arma \n5- Matar Zumbie \n6- Matar boss \n7- Usar item \n8- Descartar item \n9- Salvar o jogo ou recarregar  \n10- Adicionar algo ao inventario\n11 - Sair ")
     switch(pergunta){
         case "1":
@@ -285,14 +343,27 @@ while(iniciar){
             break
         case "5":
             mostrarInventario()
-            let arma = prompt("Digite a arma que deseja usar")
-            matarZumbie("Zumbie",arma)
-            break
+            if(inimigos.length === 0){
+                alert("Você matou todos os zumbies,Parabens")
+                iniciar = false
+                break
+            }else{
+                let arma = prompt("Digite a arma que deseja usar")
+                matarZumbie("Zumbie",arma)
+                break
+            }
+
         case "6":
             mostrarInventario()
-            let arma2 = prompt("Digite a arma que deseja usar")
-            matarBoss("Boss",arma2)
-            break
+            if(inimigos.length === 0){
+                alert("Você matou todos os zumbies,Parabens")
+                iniciar = false
+                break
+            }else{
+                let arma2 = prompt("Digite a arma que deseja usar")
+                matarBoss("Boss",arma2)
+                break
+            }
         case "7":
             let qualItem = prompt("Digite o qual item você quer usar Erva ou Munição")
             if(qualItem === "Erva"){
@@ -303,12 +374,15 @@ while(iniciar){
             }
             break
         case "8":
-            let qualItem2 = prompt("Digite o que você quer descartar do seu invetario  Erva, Munição ou  Arma")
+            let qualItem2 = prompt("Digite o que você quer descartar do seu invetario  Erva, Munição,Chave ou  Arma")
 
             mostrarInventario()
             if(qualItem2 === "Erva"){
                 descartarErva("Erva")
-            }else if(qualItem2 === "Munição"){
+            }else if(qualItem2 === "Chave"){
+                descartarChave("Chave")
+            }
+            else if(qualItem2 === "Munição"){
                 descartarMunicao("Munição")
             }else if(qualItem2 === "Arma"){
                 let qualArma = prompt("Digite qual arma você quer descartar")
@@ -320,22 +394,25 @@ while(iniciar){
             salvarERecarregarJogo(salvarRecarregar)
             break
         case "10":
-            let qualItem3 = prompt("Digite o que você quer adicionar ao inventario  Erva, Munição ou Arma")
+            let qualItem3 = prompt("Digite o que você quer adicionar ao inventario  Erva, Munição,Chave ou Arma")
 
             if(qualItem3 === "Erva"){
                 adicionarErva("Erva")
             }else if(qualItem3 === "Munição"){
                 adicionarMunicao("Munição")
-            }else if(qualItem3 === "Arma"){
+            }else if(qualItem3 === "Chave"){
+                adicionarChave("Chave")
+            }
+            else if(qualItem3 === "Arma"){
                 let qualArma2 = prompt("Digite qual arma você quer adicionar entre \n- Pistola \n- Escopeta \n- Faca")
                 if(qualArma2 !== "Pistola" || qualArma2 !== "Escopeta"  || qualArma2 !== "Faca"){
                     adicionarArma(qualArma2)
                 }
             }
-            break
         case "11":
             iniciar =false
             break
-
+        default :
+        alert("Opção invalida")
     }
 }
