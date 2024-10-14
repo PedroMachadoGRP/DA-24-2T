@@ -20,7 +20,7 @@ let chave = [
     {nome:"Chave",uso:1}
 ]
 let municoes = [ //Objeto para repersentar a munição que repara as armas do jogador
-    {nome : "Munição",reparo : 10}
+    {nome : "Munição",reparo : 1}
 ]
 let inimigos = [ //Matriz para representar o número de inimigo
     ["Zumbie"],
@@ -273,64 +273,81 @@ function adicionarArma(armaNome4){ //Função para adicionar um erva ao inventar
     }
 }
 
-function descartarErva(ervaSelecionada2){ //Função para descartar ervas
-for(let i = 0; i < inventario.length; i++){ //Percorre a matriz de inventario
-    for(let j = inventario[i].length - 1 ; j>= 0; j--){ //Percorre a matriz de inventario
-        if(inventario[i][j] === ervaSelecionada2){ //Caso encotre alguma erva no inventario
-            inventario[i].splice(j,1) //Remove a erva do inventario
-            alert("A erva foi descartada");
-            mostrarInventario()
+function descartarErva(ervaSelecionada2) { // Função para descartar as ervas do inventario
+    let encontrouErva = false; 
+    for (let i = 0; i < inventario.length; i++) { // Percorre a matriz de inventario
+        for (let j = inventario[i].length - 1; j >= 0; j--) {  // Percorre a matriz de inventario
+            if (inventario[i][j] === ervaSelecionada2) { // Caso encontre a erva
+                inventario[i].splice(j, 1); // Remove a erva do inventario
+                alert("A erva foi descartada");
+                mostrarInventario();
+                encontrouErva = true;
+                return; 
             }
-        else{ //Caso o jogador não tenha erva no inventario
-            alert("Você não tem erva no inventrario para descartar")
         }
-        }
+    }
+    // Caso a erva não seja encontrada
+    if (!encontrouErva) {
+        alert("Você não tem erva no inventário para descartar");
     }
 }
 function descartarChave(chaveSelecionada2){ //Função para descartar chave
-    for(let i = 0; i < inventario.length; i++){ //Percorre a matriz de inventario
-        for(let j = inventario[i].length - 1 ; j>= 0; j--){ //Percorre a matriz de inventario
-            if(inventario[i][j] === chaveSelecionada2){ //Caso encotre alguma chave no inventario
-                inventario[i].splice(j,1) //Remove a chave do inventario
+    let encontrouChave = false; 
+    for (let i = 0; i < inventario.length; i++) { // Percorre a matriz de inventario
+        for (let j = inventario[i].length - 1; j >= 0; j--) {  // Percorre a matriz de inventario
+            if (inventario[i][j] === chaveSelecionada2) { // Caso encontre a chave no inventario
+                inventario[i].splice(j, 1); // Remove a chave do inventario
                 alert("A chave foi descartada");
-                mostrarInventario()
-                }
-            else{ //Caso o jogador não tenha chave no inventario
-                alert("Você não tem chave no inventrario para descartar")
-            }
+                mostrarInventario();
+                encontrouChave = true;
+                return; 
             }
         }
     }
+    // Caso a chave não seja encontrada
+    if (!encontrouChave) {
+        alert("Você não tem chaves no inventário para descartar");
+    }
+}
 function descartarMunicao(municaoSelecionada2){ //Função para descartar munições
-    for(let i = 0; i < inventario.length; i++){ //Percorre a matriz de inventario
-        for(let j = inventario[i].length - 1 ; j>= 0; j--){ //Percorre a matriz de inventario
-            if(inventario[i][j] === municaoSelecionada2){//Caso encotre alguma munição no inventario
-                inventario[i].splice(j,1) //Remove a munição da matriz de inventario
+    let encontrouMunicao = false; 
+    for (let i = 0; i < inventario.length; i++) { // Percorre a matriz de inventario
+        for (let j = inventario[i].length - 1; j >= 0; j--) {  // Percorre a matriz de inventario
+            if (inventario[i][j] === municaoSelecionada2) { // Caso encontre a munição no inventario
+                inventario[i].splice(j, 1); // Remove a munição do inventario
                 alert("A munição foi descartada");
-                mostrarInventario()
-                }
-                else{//Caso  o jogador não tenha munição no inventario
-                    console.log("Você não tem munição no inventario para descartar");
-                    
-                }
+                mostrarInventario();
+                encontrouMunicao = true;
+                return; 
             }
         }
+    }
+    // Caso a munição não seja encontrada
+    if (!encontrouMunicao) {
+        alert("Você não tem munições no inventário para descartar");
+    }
 }
 function descartarArma(armaSelecionada2){ //Função para descartar armas
     let arma  = armas.find (arma => arma.nome === armaSelecionada2) // Arma escolida pelo jogador
     if (arma){
-        for(let i = 0; i < inventario.length; i++){ //Percorre a matriz de inventario
-            for(let j = inventario[i].length - 1 ; j>= 0; j--){ //Percorre a matriz de inventario
-                if(inventario[i][j] === armaSelecionada2){ //Caso a arma esteja no inventario
-                    inventario[i].splice(j,1) //Remove a arma do inventario
-                    alert(`A arma ${arma.nome} foi descartada`);
-                    mostrarInventario()
-                    }
+        let encontrouMunicao = false; 
+        for (let i = 0; i < inventario.length; i++) { // Percorre a matriz de inventario
+            for (let j = inventario[i].length - 1; j >= 0; j--) {  // Percorre a matriz de inventario
+                if (inventario[i][j] === armaSelecionada2) { // Caso encontre a arma no inventario
+                    inventario[i].splice(j, 1); // Remove a arma do inventario
+                    alert(`A arma  ${arma.nome} foi descartada`);
+                    mostrarInventario();
+                    encontrouMunicao = true;
+                    return; 
                 }
             }
+        }
+        // Caso a arma não seja encontrada
+        if (!encontrouMunicao) {
+            alert("Você não tem  a arma no inventário para descartar");
+        }
     }
 }
-
 
 
 let iniciar = true
@@ -382,9 +399,11 @@ while(iniciar){
             let qualItem = prompt("Digite o qual item você quer usar Erva ou Munição")
             if(qualItem === "Erva"){
                 usarErva("Erva")
+                break
             }else if(qualItem === "Munição"){
                 let armaEscolida = prompt("Qual arma você deseja usar essa munição")
                 usarMunicao(qualItem,armaEscolida)
+                break
             }
             break
         case "8":
@@ -393,14 +412,18 @@ while(iniciar){
             mostrarInventario()
             if(qualItem2 === "Erva"){
                 descartarErva("Erva")
+                break
             }else if(qualItem2 === "Chave"){
                 descartarChave("Chave")
+                break
             }
             else if(qualItem2 === "Munição"){
                 descartarMunicao("Munição")
+                break
             }else if(qualItem2 === "Arma"){
                 let qualArma = prompt("Digite qual arma você quer descartar")
                 descartarArma(qualArma)
+                break
             }
             break
         case "9":
@@ -412,15 +435,19 @@ while(iniciar){
 
             if(qualItem3 === "Erva"){
                 adicionarErva("Erva")
+                break
             }else if(qualItem3 === "Munição"){
                 adicionarMunicao("Munição")
+                break
             }else if(qualItem3 === "Chave"){
                 adicionarChave("Chave")
+                break
             }
             else if(qualItem3 === "Arma"){
                 let qualArma2 = prompt("Digite qual arma você quer adicionar entre \n- Pistola \n- Escopeta \n- Faca")
                 if(qualArma2 !== "Pistola" || qualArma2 !== "Escopeta"  || qualArma2 !== "Faca"){
                     adicionarArma(qualArma2)
+                    break
                 }
             }
         case "11":
