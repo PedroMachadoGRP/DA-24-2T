@@ -5,11 +5,11 @@ let zumbies = //Objeto para representar os zumbies normais
     {nome : "Zumbie", vida : 20, dano : 3}
 
 let boss =  //Objeto para representar os zumbies normais
-    {nome : "Boss",vida : 30, dano : 5}
+    {nome : "Boss",vida : 100, dano : 5}
 
 let armas = [ //Array de objeto para mostrar as armas disponiveis
     {nome : "Pistola",dano : 10,durabilidade : 20},
-    {nome : "Escopeta", dano : 50, durabilidade : 10},
+    {nome : "Escopeta", dano : 15, durabilidade : 10},
     {nome : "Faca", dano : 10, durabilidade : 100}
 
 ]
@@ -149,44 +149,58 @@ function matarBoss(nomeInimigo, armaEscolhida){ //Função para matar  o boss
     }
     console.log("Boss não encontrado.");
 }
-function usarErva(ervaSelecionada){ //Função para usar a erva que cura o jogador
-    for(let i = 0; i < inventario.length; i++){ //Percorre a matriz
-        for(let j = inventario[i].length - 1 ; j>= 0; j--){ //Percorre a matriz
-            if(inventario[i][j] === ervaSelecionada){ //Caso seja encontrado uma erva no inventario
-                let erva = ervas.find( erva => erva.nome === ervaSelecionada);
-                personagem.vida += erva.cura //Cura o jogador de acordo com a cura da erva
-                inventario[i].splice(j,1) //Remove a erva do inventario depois de usada
-                alert("A Erva foi usada");
-                mostrarInventario()
-                break
-                
-                }else if(personagem.vida >= 20){ //Caso o jogador  tenha mais de 20 de vida
-                    alert("Você não pode  usar mais usar erva,porque já está com maximo de vida que é 20");
-                }
-                else{ //Caso você não tenha ervas no seu inventrario
-                    alert("Você não tem Erva no inventario para usar");
-                    break
+function usarErva(ervaSelecionada) { // Função para usar a erva para curar o personagem
+    let erva = ervas.find(erva => erva.nome === ervaSelecionada); // Encontra a erva no array de ervas
+    // Verifica se a erva existe
+    if (!erva) {
+        alert("Erva não encontrada no inventário.");
+        return;
+    }
+    let ervaInventario = false;
+    for (let i = 0; i < inventario.length; i++) { // Percorre a matriz de inventario
+        for (let j = inventario[i].length - 1; j >= 0; j--) { // Percorre a matriz de inventario
+            if (inventario[i][j] === ervaSelecionada) { // Caso tiver erva no inventario
+                ervaInventario = true;
+                if (personagem.vida < 20) { //Caso a vida do personagem seja menor que 20
+                    personagem.vida += erva.cura; // Cura a vida do personagem
+                    if (personagem.vida > 20) {
+                        personagem.vida = 20; // Garante que a vida não ultrapasse 20
+                    }
+                    inventario[i].splice(j, 1); // Exclui a erva depois do uso
+                    alert("A erva foi usada");
+                    mostrarInventario();
+                } else {
+                    alert("Sua vida já está no máximo que é 20.");
                 }
             }
-        }        
+        }
+    }
+
+    if (!ervaInventario) { // Caso você não tenha erva no seu inventario
+        alert("Você não tem erva no inventário para usar.");
+    }
 }
-function usarMunicao(municaoSelecionada,armaSelecionada){ //Função para usar a munição para aumentar a durabilidade das armas
-    for(let i = 0; i < inventario.length; i++){ //Percorre a matriz
-        for(let j = inventario[i].length - 1 ; j>= 0; j--){ //Percorre a matriz
-            if(inventario[i][j] === municaoSelecionada){ //Caso seja encontrado uma munição no inventario
-                let arma = armas.find (arma => arma.nome === armaSelecionada) //Identifica a arma selecionado pelo jogador
-                arma.durabilidade += municao.reparo // Aumenta a durabilidade das armas de acordo com a quantiade de reparo da munição
-                inventario[i].splice(j,1) //Exclui a munição usado do  da matriz de inventario
+function usarMunicao(municaoSelecionada,armaSelecionada){ //Função para usar a munição para aumetar a durabilidade da arma
+    let municao = municoes.find(municao => municao.nome === municaoSelecionada); //Encontra a munição no array de munição
+    let arma = armas.find(arma => arma.nome === armaSelecionada);//Encontra a arma no array de armas
+    if (!municao) { //Caso a munição não seja achada
+        alert("Munição não encontrada no inventário.");
+    }
+    let muniçãoNoInventario = false;
+    for (let i = 0; i < inventario.length; i++) {  //Percorre a matriz de inventario
+        for (let j = inventario[i].length - 1; j >= 0; j--) {  //Percorre a matriz de inventario
+            if (inventario[i][j] === municaoSelecionada) { 
+                muniçãoNoInventario = true; 
+                arma.durabilidade += municao.reparo; //Aumenta a durabilidade da arma selecionada
+                inventario[i].splice(j, 1); //Exclui a munição após o uso
                 alert("A munição foi usada");
-                mostrarInventario()
-                break
-                }
-                else{ //Caso o jogador não tenha munição no inventario
-                    alert("Você não tem munição no inventario para usar");
-                    break  
-                }
+                mostrarInventario();
             }
-        } 
+        }
+    }
+    if (!muniçãoNoInventario) { //Caso você não tenha munição no inventario
+        alert("Você não tem munição no inventário para usar.");
+    }
 }
 function adicionarErva(){ //Função para adicionar um erva ao inventario do jogador
     let nomeErva = "Erva";
@@ -374,7 +388,7 @@ while(iniciar){
             }
             break
         case "8":
-            let qualItem2 = prompt("Digite o que você quer descartar do seu invetario  Erva, Munição,Chave ou  Arma")
+            let qualItem2 = prompt("Digite o que você quer descartar do seu invetario  Erva, Munição ou  Arma")
 
             mostrarInventario()
             if(qualItem2 === "Erva"){
