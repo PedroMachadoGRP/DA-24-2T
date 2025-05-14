@@ -9,7 +9,9 @@ const personagens = [
     {
         nome : "Arnaldo",classe : "Mago", nivel: 10,hp : 50, habilidades : ["Fogo"],historicoAcoes: []},
     {
-        nome : "Pedro", classe : "Guerreiro", nivel: 20, hp: 100, habilidades : ["Voar"], historicoAcoes: []
+        nome : "Pedro", classe : "Guerreiro", nivel: 20, hp: 100, habilidades : ["Voar"], historicoAcoes: []},
+    {
+        nome : "Luis", classe : "Necromante", nivel: 69, hp: 121, habilidades : ["Invocar"], historicoAcoes: []
     } 
 ]
 function adicionarPersonagem(nome,classe,nivel,hp,habilidade){ //Função para adicionar personagem
